@@ -2,7 +2,7 @@
 layout: post
 title:  "[CVE-2016-????] iOS containermanagerd XPC array out of bound vulnerability"
 date:   2016-06-17 12:00:00 +0800
-categories: security android cve
+categories: security apple xpc
 ---
 
 Today I remembered about a iOS bug I had in `containermanagerd`, and I tought to check if it still was present in `iOS 10 beta`.
