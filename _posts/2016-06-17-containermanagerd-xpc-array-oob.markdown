@@ -62,4 +62,7 @@ int main(int argc, char **argv, char **envp) {
 }
 {% endhighlight %}
 
+#### Take aways:
+- All input that comes via IPC should be treated as untrusted.
+
 [pangu-xpc]: https://www.blackhat.com/docs/us-15/materials/us-15-Wang-Review-And-Exploit-Neglected-Attack-Surface-In-iOS-8.pdf
