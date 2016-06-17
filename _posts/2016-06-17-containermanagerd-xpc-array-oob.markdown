@@ -29,11 +29,15 @@ If you want to see more details about the bug, just drop a unpatched version of 
 
 ## Vulnerable Code
 
-![containermanagerd vulnerable code](/assets/containermanagerd.jpg)
+![containermanagerd patched](/assets/containermanagerd.jpg)
 
 The red box is the new added check in iOS 10 on the array index, which comes from the input with `xpc_dictionary_get_uint64` with "Command" key (wrongly shown in IDA decompilation).
 
 Later after this index is used to access the array I mentioned.
+
+This is how the code looks like in iOS 9.2 `containermanagerd`
+
+![containermanagerd vuln](/assets/containermanagerd_vuln.jpg)
 
 ## PoC:
 
