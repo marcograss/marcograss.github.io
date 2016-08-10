@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "php 5.6.24 one liner fixed null pointer memory access"
+date:   2016-08-10 11:00:00 +0800
+categories: bug
+---
+
+A funny bug in php that can fit into one tweet again, not security bug since most likely in parsing
+
+{%highlight php%}
+<?php
+''+$jcase=$$FAKR=ETA;$D=$$D->WEN=&$RELES;$D->D->JELBREK^=''
+?>
+{%endhighlight%}
+
+### Crash
+
+{%highlight text%}
+➜  php ./php-5.6.24/sapi/cli/php -f test.php
+
+Warning: Attempt to modify property of non-object in /home/bob/VulnResearch/php/test.php on line 1
+
+Warning: Creating default object from empty value in /home/bob/VulnResearch/php/test.php on line 1
+ASAN:DEADLYSIGNAL
+=================================================================
+==14440==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000009 (pc 0x00000165e5c6 bp 0x00000060209f sp 0x7ffe3ad39960 T0)
+    #0 0x165e5c5  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x165e5c5)
+    #1 0x1563fbe  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x1563fbe)
+    #2 0x16000a4  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x16000a4)
+    #3 0x16004c1  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x16004c1)
+    #4 0x1564883  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x1564883)
+    #5 0x15bbd60  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x15bbd60)
+    #6 0x13b1db3  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x13b1db3)
+    #7 0x1918b2b  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x1918b2b)
+    #8 0x1914f5f  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x1914f5f)
+    #9 0x7f5ed51d682f  (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)
+    #10 0x45dee8  (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x45dee8)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/bob/VulnResearch/php/php-5.6.24/sapi/cli/php+0x165e5c5) 
+==14440==ABORTING
+{%endhighlight%}
