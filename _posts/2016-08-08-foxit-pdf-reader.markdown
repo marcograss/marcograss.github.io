@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[CVE-2016-XXXX] Foxit PDF reader memory corruption"
+title:  "[CVE-2016-6860] Foxit PDF reader memory corruption"
 date:   2016-08-08 11:00:00 +0800
 categories: security bug cve
 ---
