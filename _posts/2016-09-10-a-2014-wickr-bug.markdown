@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "A simple bug in Wickr Android I disclosed in 2014"
+date:   2016-09-10 11:00:00 +0800
+categories: security android bug
+---
+
+I've been keeping watching the popular show Mr. Robot, and recently in the show they started using [`Wickr`][wickr-link] as a secure messenger.
+
+This reminded me of a bug I disclosed to [`Wickr`][wickr-link] generous bug bounty in `January 2014` which I never wrote about.
+
+## The problem
+
+Actually the problem it's just some leakage of very sensitive informations in the Android system logs in the `1.9.8.8 Beta` Android version at that time.
+
+[`Wickr`][wickr-link] was internally using a `SQLCipher` for encrypting your chats and stuff.
+
+If you worked on Android apps you most likely encountered at least once `SQLCipher`.
+
+Basically it's a regular sqlite database, but with a added layer of AES encryption. You need a key to be able to query and write the db.
+
+So the whole security purpose is not to leak that key ever, otherwise it's just like a dump sqlite DB...
+
+Turns out that [`Wickr`][wickr-link] was leaking this same key in the system logs, and if you recall in 2014 there were still lot of old Android phones version around where log access was not so difficult.
+
+{% highlight text %}
+01-15 22:47:27.941: D/libWickr(6534): Generated database password key in HEX format: 40************80*******************************7d****83****5a****3
+{% endhighlight %}
+
+![wickr key logging](/assets/wickr.jpg)
+
+Also another information, most likely about authentication with their web services was leaked, however I didn't inspect its purpose. Omitted from logs
+
+
+{% highlight text %}
+01-15 22:47:56.341: D/libWickr(6534): Got secure json for login: [OMITTED]
+{% endhighlight %}
+
+I reported the vuln the 16th of January 2014, and the patch was quite quick, but I don't remember the details.
+
+A embargo of 3 months was set for the bounty.
+
+
+[wickr-link]: https://www.wickr.com/
