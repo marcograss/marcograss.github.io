@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "[NO-CVE] cJSON JSON parser buffer out of bound read"
+date:   2016-10-03 11:00:00 +0800
+categories: security
+---
+
+## cJSON NO-CVE
+
+# issue
+[https://github.com/ImageMagick/ImageMagick/issues/280](https://github.com/ImageMagick/ImageMagick/issues/280)
+
+# patch
+[https://github.com/ImageMagick/ImageMagick/commit/a7bb158b7bedd1449a34432feb3a67c8f1873bfa](https://github.com/ImageMagick/ImageMagick/commit/a7bb158b7bedd1449a34432feb3a67c8f1873bfa)
+
