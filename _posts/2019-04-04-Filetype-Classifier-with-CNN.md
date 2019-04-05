@@ -15,7 +15,7 @@ This is a exported jupyter notebook to markdown, so it has some fuckups, especia
 
 I'm too lazy to fix them.
 
-TL;DR on the regression suite of r2, we can get around 80% accuracy even with a not very good image visualization, between ELF, PE, Dalvik, MachO and stuff.
+TL;DR on the regression suite of r2, we can get around 80% accuracy even with a not very good image visualization, between ELF, PE, Dalvik, MachO and stuff, with resnet50, following fast.ai classes.
 
 I'm sure there are much better ways both in representing the executables and in doing the ML, just having fun, I'm not a practitioner. 
 
